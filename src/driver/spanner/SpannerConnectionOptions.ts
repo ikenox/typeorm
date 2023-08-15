@@ -106,6 +106,16 @@ export interface SpannerConnectionOptions
     readonly flags?: string[]
 
     /**
+     * Spanner emulator host.
+     */
+    readonly host?: string
+
+    /**
+     * Spanner emulator port.
+     */
+    readonly port?: number
+
+    /**
      * Replication setup.
      */
     readonly replication?: {

@@ -213,11 +213,11 @@ workflows:
       - lint
       - build
       - test:
-          name: test (mysql mariadb postgres mssql mongodb sqlite better-sqlite3 sqljs) - Node v<< matrix.node-version >>
+          name: test (mysql mariadb postgres mssql mongodb sqlite better-sqlite3 sqljs spanner) - Node v<< matrix.node-version >>
           requires:
             - lint
             - build
-          databases: "mysql mariadb postgres mssql mongodb sqlite better-sqlite3 sqljs"
+          databases: "mysql mariadb postgres mssql mongodb sqlite better-sqlite3 sqljs spanner"
           matrix:
             parameters:
               node-version:

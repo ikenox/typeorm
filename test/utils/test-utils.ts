@@ -16,6 +16,7 @@ import { QueryResultCache } from "../../src/cache/QueryResultCache"
 import path from "path"
 import { ObjectUtils } from "../../src/util/ObjectUtils"
 import { EntitySubscriberMetadataArgs } from "../../src/metadata-args/EntitySubscriberMetadataArgs"
+import { SpannerConnectionOptions } from "../../src/driver/spanner/SpannerConnectionOptions"
 
 /**
  * Interface in which data is stored in ormconfig.json of the project.
@@ -349,7 +350,12 @@ getMetadataArgsStorage().entitySubscribers.push({
 
 export function createDataSource(options: DataSourceOptions): DataSource {
     if (options.type === "spanner") {
-        process.env.SPANNER_EMULATOR_HOST = "localhost:9010"
+        const spannerConnectionOptions = options as SpannerConnectionOptions
+
+        process.env.SPANNER_EMULATOR_HOST =
+            spannerConnectionOptions.host && spannerConnectionOptions.port
+                ? `${spannerConnectionOptions.host}:${spannerConnectionOptions.port}`
+                : "localhost:9010"
         // process.env.GOOGLE_APPLICATION_CREDENTIALS =
         //     "/Users/messer/Documents/google/typeorm-spanner-3b57e071cbf0.json"
         if (Array.isArray(options.subscribers)) {

@@ -133,5 +133,17 @@
     "extra": {
       "connectString": "typeorm-oracle:1521/XE"
     }
+  },
+  {
+    "skip": true,
+    "name": "spanner",
+    "type": "spanner",
+    "host": "typeorm-spanner",
+    "port": 9010,
+    "disabledIfNotEnabledImplicitly": true,
+    "projectId":"test-project",
+    "instanceId":"test-instance",
+    "databaseId":"test-db",
+    "logging": false
   }
 ]
